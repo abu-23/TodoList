@@ -2,37 +2,210 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* todo styles */
+.header-div {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.header {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 5px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.background-image {
+  width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.crescent-icon {
+  margin-left: auto;
+}
+
+.todo-container {
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 5px;
+  z-index: 3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 20px;
+}
+
+.input-container {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.input-container input {
+  width: calc(100% - 50px);
+  padding: 18px 25px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.todo-list {
+  list-style: none;
+  background: white;
+  border-radius: 4px;
+
+  width: 100%;
+  height: 40vh;
+  overflow: scrollY;
+  overflow-x: hidden;
+  margin-bottom: 0rem;
+  padding: 0rem;
+  box-shadow: 1px 5px 5px rgb(197, 197, 197);
+}
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  /* margin-bottom: 10px; */
+  padding: 14px 14px;
+}
+
+.todo-list li:hover {
+  .delete-btn {
+    display: inline-block;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+.todo-list li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.delete-btn {
+  margin-left: auto;
+  color: rgb(80, 77, 77);
+  border: none;
+  padding: 0px 15px;
+  cursor: pointer;
+  display: none;
+  font-size: 16px;
+}
+
+.delete-btn:hover {
+  color: rgb(253, 253, 253);
+  background: linear-gradient(90deg, #c058f3 0%, #55ddff 100%);
+
+  border-radius: 5px;
+}
+
+.filter-container {
+  padding: 15px 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  background: white;
+  box-shadow: 0px 5px 5px rgb(197, 197, 197);
+
+  /* background:red; */
+}
+
+.hrline {
+  border: 0.2px solid rgb(231, 226, 226);
+  width: 100%;
+  margin: 0px;
+  padding: 0rem;
+}
+
+.todo-remainig {
+  color: rgb(156, 152, 152);
+  border: none;
+  padding: 0px 10px;
+  cursor: pointer;
+  font-size: 10px;
+  margin: 0.5rem 0rem;
+  background: none;
+}
+
+.filter-button-div {
+  margin-bottom: 5px;
+  padding: 0rem;
+  margin-left: 30px;
+}
+.filter-btn {
+  color: rgb(156, 152, 152);
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  margin: 0rem 0rem;
+  background: none;
+}
+
+.selected {
+  color: rgba(12, 104, 165, 0.881);
+  border: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 600;
+  margin: 0rem 0rem;
+  background: none;
+}
+.clear-btn {
+  margin: 5px;
+  margin-left: 5rem;
+  background: none;
+  color: grey;
+  border: none;
+  padding: 0px;
+  cursor: pointer;
+  float: right;
+  font-size: 11px;
+}
+
+.clear-btn:hover {
+  color: black;
+}
+
+.checkbox-round {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-round:checked {
+  background-color: #c058f3;
+  /* #55DDFF */
+  background: linear-gradient(90deg, #c058f3 0%, #55ddff 100%);
+}
+
+.checkmark:after {
+  content: "";
+  position: relative;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.todo-list li input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.todo-list li .checkmark:after {
+  left: -1.3rem;
+  right: 0px;
+  top: 0px;
+  width: 3px;
+  height: 7px;
+  border: 2px solid rgb(245, 244, 244);
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }

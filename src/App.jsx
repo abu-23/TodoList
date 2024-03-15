@@ -1,7 +1,26 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import bgImage from "./assets/images/bg-image.jpg";
 import crescent from "./assets/icons/crescent-icon.svg";
+import {
+  BackgroundImage,
+  HeaderDiv,
+  HeaderText,
+  InputContainer,
+  TodoListDiv,
+  TodoListItems,
+  CheckboxRound,
+  Checkmark,
+  TodoRemainig,
+  CrescentIcon,
+  TaskInput,
+  TodoContainer,
+  FilterContainer,
+  FilterBtn,
+  DeleteBtn,
+  FilterButtonDiv,
+  ClearBtn,
+  TodoDesc,
+} from "./AppStyle";
 
 function TodoList() {
   const [todos, setTodos] = useState(() => {
@@ -52,14 +71,14 @@ function TodoList() {
 
   return (
     <>
-      <img className="background-image" src={bgImage} alt="background" />
-      <div className="todo-container">
-        <div className="header-div">
-          <h1 className="header">TODO</h1>
-          <img className="crescent-icon" src={crescent} alt="crescent-icon" />
-        </div>
-        <div className="input-container">
-          <input
+      <BackgroundImage src={bgImage} alt="background" />
+      <TodoContainer>
+        <HeaderDiv>
+          <HeaderText>TODO</HeaderText>
+          <CrescentIcon src={crescent} alt="crescent-icon" />
+        </HeaderDiv>
+        <InputContainer>
+          <TaskInput
             type="text"
             value={inputValue}
             placeholder="Create a new todo..."
@@ -70,56 +89,51 @@ function TodoList() {
               }
             }}
           />
-        </div>
-        <ul className="todo-list">
+        </InputContainer>
+        <TodoListDiv>
           {filteredTodos.map((todo) => (
             <>
-              <li key={todo.id}>
-                <input
-                  className="checkbox-round"
+              <TodoListItems>
+                <CheckboxRound
                   type="checkbox"
                   checked={todo.completed}
                   onChange={() => toggleTodo(todo.id)}
                 />
-                <span className="checkmark" />
-                <span className={todo.completed ? "completed" : ""}>
+                <Checkmark isChecked={todo.completed} />
+                <TodoDesc isCompleted={todo.completed}>
                   {todo.text}
-                </span>
-                <div className="delete-btn" onClick={() => deleteTodo(todo.id)}>
-                  X
-                </div>
-              </li>
+                </TodoDesc>
+                <DeleteBtn onClick={() => deleteTodo(todo.id)}>X</DeleteBtn>
+              </TodoListItems>
               <hr className="hrline" />
             </>
           ))}
-        </ul>
-        <div className="filter-container">
-          <div className="todo-remainig">{todos.length} todo left</div>
-          <div className="filter-button-div">
-            <button
-              className={filter === "all" ? "selected" : "filter-btn"}
+        </TodoListDiv>
+        <FilterContainer>
+          <TodoRemainig>{todos.length} todo left</TodoRemainig>
+          <FilterButtonDiv>
+            <FilterBtn
+              isActive={filter === "all"}
               onClick={() => setFilter("all")}
             >
               All
-            </button>
-            <button
-              className={filter === "active" ? "selected" : "filter-btn"}
+            </FilterBtn>
+            <FilterBtn
+              isActive={filter === "active"}
               onClick={() => setFilter("active")}
             >
               Active
-            </button>
-            <button
-              className={filter === "completed" ? "selected" : "filter-btn"}
+            </FilterBtn>
+            <FilterBtn
+              isActive={filter === "completed"}
               onClick={() => setFilter("completed")}
             >
               Completed
-            </button>
-          </div>
-          <button className="clear-btn" onClick={clearCompleted}>
-            Clear Completed
-          </button>
-        </div>
-      </div>
+            </FilterBtn>
+          </FilterButtonDiv>
+          <ClearBtn onClick={clearCompleted}>Clear Completed</ClearBtn>
+        </FilterContainer>
+      </TodoContainer>
     </>
   );
 }
